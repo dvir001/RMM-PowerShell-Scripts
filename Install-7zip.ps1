@@ -3,7 +3,8 @@ else { Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePoin
 # Install apps:
 C:\ProgramData\chocolatey\choco.exe install 7zip -y --acceptlicense
 
-# set default:
+# Function to set 7zip to Default app.
+
 function Set-FTA
 {
 	
