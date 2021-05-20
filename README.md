@@ -1,1 +1,1 @@
-# Pulseway-Powershell-Scripts
+# Pulseway-PowerShell-Scripts
