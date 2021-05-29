@@ -20,7 +20,7 @@ function Install-Office
 	Invoke-Expression -Command "$exeLocation $ArgumentList $configLocation"
 	
 	# Remove the office apps for Windows 10
-	Get-AppxPackage *officehub* | Remove-AppxPackage
+	Get-AppxPackage *OfficeHub* | Remove-AppxPackage
 	Get-AppxPackage *OneNote* | Remove-AppxPackage
 	# C:\ProgramData\chocolatey\choco.exe install office365business -y --acceptlicense --params=/language:"en-US" /updates:"TRUE" /eula:"TRUE" <# Old choco install line #>
 }
