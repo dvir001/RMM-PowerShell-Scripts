@@ -1,0 +1,21 @@
+<Configuration ID="db539aad-e8fa-43b8-9182-8a06a286d483">
+  <Add OfficeClientEdition="64" Channel="Current">
+    <Product ID="VisioProRetail">
+      <Language ID="he-il" />
+      <Language ID="en-us" />
+      <ExcludeApp ID="Groove" />
+      <ExcludeApp ID="OneDrive" />
+    </Product>
+    <Product ID="ProofingTools">
+      <Language ID="he-il" />
+      <Language ID="en-us" />
+    </Product>
+  </Add>
+  <Property Name="SharedComputerLicensing" Value="0" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Property Name="AUTOACTIVATE" Value="0" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+  <Property Name="DeviceBasedLicensing" Value="0" />
+  <Updates Enabled="TRUE" />
+  <Display Level="Full" AcceptEULA="TRUE" />
+</Configuration>
