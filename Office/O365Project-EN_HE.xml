@@ -1,0 +1,23 @@
+<Configuration ID="bd02b2d7-64a5-4f24-ae07-96e06bb21e36">
+  <Add OfficeClientEdition="64" Channel="SemiAnnual">
+    <Product ID="ProjectProRetail">
+      <Language ID="en-us" />
+      <Language ID="he-il" />
+    </Product>
+    <Product ID="LanguagePack">
+      <Language ID="en-us" />
+      <Language ID="he-il" />
+    </Product>
+    <Product ID="ProofingTools">
+      <Language ID="en-us" />
+      <Language ID="he-il" />
+    </Product>
+  </Add>
+  <Property Name="SharedComputerLicensing" Value="0" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Property Name="AUTOACTIVATE" Value="0" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+  <Property Name="DeviceBasedLicensing" Value="0" />
+  <Updates Enabled="TRUE" />
+  <Display Level="Full" AcceptEULA="TRUE" />
+</Configuration>
