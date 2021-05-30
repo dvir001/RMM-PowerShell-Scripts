@@ -1,12 +1,12 @@
 ﻿# Install Office
 function Install-Office
 {			
-	# Config lines:
+	# Config:
 	$exeSource = 'https://github.com/dvir001/Pulseway-PowerShell-Scripts/releases/download/Office/setup.exe'
 	$configSource = 'https://github.com/dvir001/Pulseway-PowerShell-Scripts/releases/download/Office/O365Office-Business-EN_HE.xml'
 	$configName = 'O365Office-Business-EN_HE.xml'
 	
-	# Static lines:
+	# Static Config:
 	$exeName = 'setup.exe'
 	$dir = 'C:\Windows\Temp'
 	$ArgumentList = '/configure'
@@ -16,12 +16,13 @@ function Install-Office
 	
 	if ((Test-Path $exeLocation) -ne "True") { Invoke-WebRequest $exeSource -OutFile $exeLocation } <# Lookup if the exe is there #>
 	if ((Test-Path $configLocation) -ne "True") { Invoke-WebRequest $configSource -OutFile $configLocation } <# Lookup if the config xml is there #>
-	# Run the install
-	Invoke-Expression -Command "$exeLocation $ArgumentList $configLocation"
 	
 	# Remove the office apps for Windows 10
-	Get-AppxPackage *OfficeHub* | Remove-AppxPackage
-	Get-AppxPackage *OneNote* | Remove-AppxPackage
+	$apps = "*Microsoft.windowscommunicationsapps*", "*OfficeHub*", "*OneNote*"
+	foreach ($app in $apps) { Get-AppxPackage $app | Remove-AppxPackage }
+	
+	# Run the install
+	Invoke-Expression -Command "$exeLocation $ArgumentList $configLocation"
 	# C:\ProgramData\chocolatey\choco.exe install office365business -y --acceptlicense --params=/language:"en-US" /updates:"TRUE" /eula:"TRUE" <# Old choco install line #>
 }
 
