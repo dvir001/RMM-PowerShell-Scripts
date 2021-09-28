@@ -213,7 +213,7 @@ function Drivers-Install
 		$installTest = "$env:windir\Temp\$installFolder"
 		$installArgument = '/s /e /f ' + $installTest
 		Program-Install -installSource "https://hpia.hpcloud.hp.com/downloads/hpia/hp-hpia-5.1.2.exe" -installName "$installFolder.exe" -installArgument $installArgument -installTest $installTest -workDir "$env:windir\Temp"
-		Start-Process -FilePath "$env:windir\Temp\$installFolder\ImageAssistant.exe" -ArgumentList '/Operation:Analyze /Category:All /Selection:All /Action:Install /SoftpaqDownloadFolder:"C:\Windows\Temp\HP-HPIA\Downloads" /Silent' -Wait
+		Program-Run -installName "$installFolder\ImageAssistant.exe" -installArgument '/Operation:Analyze /Category:All /Selection:All /Action:Install /SoftpaqDownloadFolder:"C:\Windows\Temp\HP-HPIA\Downloads" /Silent' -workDir "$env:windir\Temp"
 		
 		# Install HP-SA
 		Program-Install -installSource "https://ftp.ext.hp.com/pub/softpaq/sp123001-123500/sp123485.exe" -installName "HP-SA.exe" -installArgument "/s" -installTest "${env:ProgramFiles(x86)}\HP\HP Support Framework\TaskbarController.exe" -workDir "$env:windir\Temp" -disableStartProcess:$false
