@@ -179,12 +179,8 @@ function Drivers-Install
 			$updateLenovo | Save-LSUpdate -Verbose
 			$updateLenovo | Install-LSUpdate -Verbose
 		}
-		try { Invoke-AsCurrentUser -ScriptBlock $updateLenovoDrivers -CacheToDisk -ErrorAction Stop } <# Set Default app #>
-		catch
-		{
-			#Write-Host "You must run this script as system or have the SeDelegateSessionUserImpersonatePrivilege token." 
-			Invoke-Command -Command $updateLenovoDrivers
-		}
+		try { Invoke-AsCurrentUser -ScriptBlock $updateLenovoDrivers -CacheToDisk -ErrorAction Stop } <# Run as user #>
+		catch { Invoke-Command -Command $updateLenovoDrivers }
 		
 		# Get all BIOS settings (for reference)
 		# Get-WmiObject -class Lenovo_BiosSetting -namespace root\wmi | ForEach-Object {if ($_.CurrentSetting -ne "") {Write-Host $_.CurrentSetting.replace(","," = ")}}
@@ -213,7 +209,7 @@ function Drivers-Install
 		$installTest = "$env:windir\Temp\$installFolder"
 		$installArgument = '/s /e /f ' + $installTest
 		Program-Install -installSource "https://hpia.hpcloud.hp.com/downloads/hpia/hp-hpia-5.1.2.exe" -installName "$installFolder.exe" -installArgument $installArgument -installTest $installTest -workDir "$env:windir\Temp"
-		Program-Run -installName "$installFolder\HPImageAssistant.exe" -installArgument '/Operation:Analyze /Category:All /Selection:All /Action:Install /SoftpaqDownloadFolder:"C:\Windows\Temp\HP-HPIA\Downloads" /Silent' -installTest "$env:windir\Temp\$installFolder\Downloads\fake.old" -workDir "$env:windir\Temp" -deleteInstallSource:$false
+		Program-Run -installName "$installFolder\ImageAssistant.exe" -installArgument '/Operation:Analyze /Category:All /Selection:All /Action:Install /SoftpaqDownloadFolder:"C:\Windows\Temp\HP-HPIA\Downloads" /Silent' -installTest "$env:windir\Temp\$installFolder\Downloads\fake.old" -workDir "$env:windir\Temp" -deleteInstallSource:$false
 		
 		# Install HP-SA
 		Program-Install -installSource "https://ftp.ext.hp.com/pub/softpaq/sp123001-123500/sp123485.exe" -installName "HP-SA.exe" -installArgument "/s" -installTest "${env:ProgramFiles(x86)}\HP\HP Support Framework\TaskbarController.exe" -workDir "$env:windir\Temp" -disableStartProcess:$false
