@@ -30,7 +30,7 @@ $configContent = @'
 '@
 
 $InstallParameters = @{
-	installSource = "https://raw.githubusercontent.com/dvir001/RMM-PowerShell-Scripts/main/Office/setup.exe"
+	installSource = "https://github.com/dvir001/RMM-PowerShell-Scripts/raw/main/FilesForScripts/setup.exe" <# Download link for exe #>
 	configFile    = "O365Office.xml"
 	configContent = $configContent
 	installZip    = ""
