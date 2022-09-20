@@ -1,3 +1,20 @@
+$InstallParameters = @{
+	installSource = "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2200120142/AcroRdrDC2200120142_MUI.exe"
+	configFile    = ""
+	configContent = ""
+	installZip    = ""
+	installName   = "AdobeDC.exe"
+	zipDir	      = ""
+	unzipDir	  = ""
+	installDir    = "$env:windir\Temp\PDF"
+	installTests  = "$env:ProgramFiles\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe", "${env:ProgramFiles(x86)}\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+	installArgument = "Start-Process -FilePath `"$env:windir\Temp\PDF\AdobeDC.exe`" -ArgumentList `"/sPB /rs`" -Wait -Verbose -ErrorAction Ignore"
+	cleanFilesOnExit = $true
+	sleepTimer    = "5"
+	retryCountMax = "5"
+	brokenTestMax = "5" <# Max tests before the script closing from a broken loop #>
+}
+
 #$installSource = "https://ardownload2.adobe.com/pub/adobe/acrobat/win/AcrobatDC/2200120085/AcroRdrDCx642200120085_MUI.exe"
 
 function Install-Program
